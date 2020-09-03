@@ -1,16 +1,15 @@
 class Category:
-  ledger= list()
-  category=""
-  amount = 0
   def __init__(self, category): 
+        self.ledger =[]
+        self.amount=0
         self.category = category 
 
 
   def check_funds(self,amount):
-    if self.amount> amount:
-      return True
-    else:
+    if self.amount< amount:
       return False
+    else:
+      return True
 
 
   def deposit(self,amount, description=""):
@@ -28,6 +27,9 @@ class Category:
 
   # return balanace of budget 
   def get_balance(self):
+    return self.amount
+
+  def __str__(self):
     result=""
     result+="*************Food*************"+"\n"
     for transaction in self.ledger:
@@ -46,8 +48,6 @@ class Category:
       result+= description + str(amount).rjust(30-len(description))+"\n"
     result+="Total: "+str(format(float(self.amount),'.2f'))
     return result
-
-
 
 
 
