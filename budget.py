@@ -28,7 +28,8 @@ class Category:
 
   # return balanace of budget 
   def get_balance(self):
-    print("*************Food*************")
+    result=""
+    result+="*************Food*************"+"\n"
     for transaction in self.ledger:
       amount=0
       description=""
@@ -37,9 +38,14 @@ class Category:
             amount = value
           elif key=="description":
             description=value
-      if amount 
-      line = description[:23] + str(amount)[:7].rjust(30-len(description))
-      print(line)
+      if len(description)>23:
+        description=description[:23]
+      amount = str(format(float(amount),'.2f'))
+      if len(amount)>7:
+        amount= amount[:7] 
+      result+= description + str(amount).rjust(30-len(description))+"\n"
+    result+="Total: "+str(format(float(self.amount),'.2f'))
+    return result
 
 
 
